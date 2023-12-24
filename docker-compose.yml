@@ -1,0 +1,21 @@
+version: "3"
+services:
+  chat-app:
+    build: .
+    ports:
+     - "5000:5000"
+    depends_on:
+      - mongo
+    env_file:
+     - ./.env
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=robel
+      - MONGO_INITDB_ROOT_PASSWORD=2002
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:
